@@ -153,11 +153,13 @@ local function refresh_targets()
             options,
             { type = "new_tmux_window", name = "[create new tmux window]", channel = 0 }
         )
+
+        for _, v in ipairs(tmux.get_panes(M.config)) do
+            table.insert(options, v)
+        end
+
     end
     for _, v in ipairs(buffer.get_channels()) do
-        table.insert(options, v)
-    end
-    for _, v in ipairs(tmux.get_panes(M.config)) do
         table.insert(options, v)
     end
 
